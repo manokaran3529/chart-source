@@ -35,7 +35,7 @@ run:
     cp -a chart-source $chart_name
     helm package $chart_name -d helm-repo --version $VERSION
     apk add make
+    apk add aws-cli
     helm plugin install https://github.com/hypnoglow/helm-s3.git --version 0.4.0
-    apk add awscli
     helm s3 push helm-repo/$chart_name-$VERSION.tgz s3://dev-helm-repo/charts
    
