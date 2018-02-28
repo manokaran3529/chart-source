@@ -31,5 +31,5 @@ run:
     VERSION=$(cd chart-source && git tag -l --points-at HEAD | tail -n1)
     cp -a chart-source $chart_name
     helm package $chart_name -d helm-repo --version $VERSION
-    helm gcs push helm-repo/$chart_name-$VERSION.tgz gs://$bucket
+    helm s3 push helm-repo/$chart_name-$VERSION.tgz s3://dev-helm-repo/charts
    
