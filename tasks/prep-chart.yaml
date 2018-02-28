@@ -16,9 +16,9 @@ outputs:
 params:
   chart_name: nginx
   bucket: ""
-  AWS_ACCESS_KEY_ID:
-  AWS_SECRET_ACCESS_KEY:
-  REGION:
+  AWS_ACCESS_KEY_ID: ""
+  AWS_SECRET_ACCESS_KEY: ""
+  REGION: ""
 
 run:
   path: bash
@@ -36,5 +36,6 @@ run:
     helm package $chart_name -d helm-repo --version $VERSION
     apk add make
     helm plugin install https://github.com/hypnoglow/helm-s3.git --version 0.4.0
+    apk add awscli
     helm s3 push helm-repo/$chart_name-$VERSION.tgz s3://dev-helm-repo/charts
    
