@@ -31,9 +31,8 @@ run:
     VERSION=$(cd chart-source && git tag -l --points-at HEAD | tail -n1)
     cp -a chart-source $chart_name
     helm package $chart_name -d helm-repo --version $VERSION
-    cat /etc/*-release
-    yum install build-essential
-    yum install make
+#    cat /etc/*-release
+    apk add make
     helm plugin install https://github.com/hypnoglow/helm-s3.git --version 0.4.0
     helm s3 push helm-repo/$chart_name-$VERSION.tgz s3://dev-helm-repo/charts
    
